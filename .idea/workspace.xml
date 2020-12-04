@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9b876e0e-ee25-459b-8dff-bd67227e336c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/data/day1/input.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/day01/day01_1.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
