@@ -53,8 +53,8 @@ func toInt(s []string) []int {
 	ints := make([]int, l)
 
 	for i := 0; i < l; i++ {
-		str := s[i]
-		f, _ := strconv.ParseFloat(fmt.Sprintf("%v", str), 64)
+		f, _ := strconv.Atoi(s[i])
+
 		ints[i] = int(f)
 	}
 
