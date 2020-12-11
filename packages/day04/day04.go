@@ -1,14 +1,12 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"regexp"
 	"sort"
 	"strconv"
 	"strings"
+	f "aoc-2020/packages/filereader"
 )
 
 type Passport struct {
@@ -95,7 +93,7 @@ func (p Passport) validData() bool {
 }
 
 func main() {
-	data := filereader("../../data/day4/input.txt")
+	data := f.Filereader("../../data/day4/input.txt")
 	passports := parseFile(data)
 	valid1 := checkCounts1(passports)
 	valid2 := checkCounts2(passports)
@@ -153,22 +151,3 @@ func parseFile(ss []string) []Passport {
 	return passports
 }
 
-func filereader(s string) []string {
-	lines := make([]string, 0)
-
-	file, err := os.Open(s)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := strings.TrimSpace(scanner.Text())
-		lines = append(lines, line)
-	}
-	if err := scanner.Err(); err != nil {
-		log.Fatalln(err)
-	}
-	return lines
-}
