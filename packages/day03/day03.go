@@ -1,15 +1,12 @@
 package main
 
 import (
-	"bufio"
+	f "aoc-2020/packages/filereader"
 	"fmt"
-	"log"
-	"os"
-	"strings"
 )
 
 func main() {
-	data := filereader("../../data/day3/input.txt")
+	data := f.Filereader("../../data/day3/input.txt")
 	treeCountR3D1 := findTreesR3D1(data)
 	treeCountR1D1 := findTreesR1D1(data)
 	treeCountR5D1 := findTreesR5D1(data)
@@ -87,8 +84,6 @@ func findTreesR1D2(s []string) int {
 	treeCount := 0
 	currentColIndex := 1
 	for i := 2; i < len(s); i+=2 {
-		fmt.Println("CurrentRowIndex:", i, "CurrentColIndex:", currentColIndex)
-		fmt.Println("treeCount:", treeCount)
 		if string(s[i][currentColIndex]) == "#" {
 			treeCount += 1
 		}
@@ -118,26 +113,4 @@ func findTreesR7D1(s []string) int {
 		}
 	}
 	return treeCount
-}
-
-func filereader(f string) []string {
-	lines := make([]string, 0)
-	file, err := os.Open(f)
-
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := strings.TrimSpace(scanner.Text())
-		lines = append(lines, line)
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatalln(err)
-	}
-
-	return lines
 }

@@ -1,13 +1,12 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"regexp"
+	"log"
 	"strconv"
 	"strings"
+	f "aoc-2020/packages/filereader"
 )
 
 type Pass struct {
@@ -18,7 +17,7 @@ type Pass struct {
 }
 
 func main() {
-	inputs := filereader("../../data/day2/input.txt")
+	inputs := f.Filereader("../../data/day2/input.txt")
 	total := iterateStringOne(inputs)
 	fmt.Println("The number of matching passwords: ", total)
 	total2 := iterateStringTwo(inputs)
@@ -55,7 +54,6 @@ func iterateStringTwo(s []string) int {
 		if len(matches) == 1 {
 			count += 1
 		}
-		fmt.Println(passInfo.min, passInfo.max, passInfo.letter, passInfo.pass, substring, matches, len(matches))
 	}
 	return count
 }
@@ -76,24 +74,4 @@ func parsePassString(s string) (data Pass) {
 			items[4],
 	}
 	return data
-}
-
-func filereader(f string) []string {
-	lines := make([]string, 0)
-	file, err := os.Open(f)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer file.Close()
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := strings.TrimSpace(scanner.Text())
-		lines = append(lines, line)
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatalln(err)
-	}
-
-	return lines
 }

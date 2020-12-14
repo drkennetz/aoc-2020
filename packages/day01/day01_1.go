@@ -1,16 +1,13 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"strconv"
-	"strings"
+	f "aoc-2020/packages/filereader"
 )
 
 func main() {
-	data := filereader("../../data/day1/input.txt")
+	data := f.Filereader("../../data/day1/input.txt")
 	intData := toInt(data)
 	twentytwentyTwo := find2020Two(intData)
 	fmt.Println(twentytwentyTwo)
@@ -18,28 +15,6 @@ func main() {
 	twentyTwentyThree := find2020Three(intData)
 	fmt.Println(twentyTwentyThree)
 	fmt.Println(multiplyTwentyTwenty(twentyTwentyThree))
-}
-
-func filereader(f string) []string {
-	lines := make([]string, 0)
-
-	file, err := os.Open(f)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := strings.TrimSpace(scanner.Text())
-		lines = append(lines, line)
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatalln(err)
-	}
-
-	return lines
 }
 
 func toInt(s []string) []int {
